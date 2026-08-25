@@ -1,4 +1,19 @@
-export const PUTER_WORKER_URL = import.meta.env.VITE_PUTER_WORKER_URL || "";
+const rawPuterWorkerUrl = (import.meta.env.VITE_PUTER_WORKER_URL || "").trim().replace(/\/$/, "");
+
+/** Puter worker base URL, e.g. https://your-worker.puter.work — not an auth token. */
+export const PUTER_WORKER_URL = (() => {
+    if (!rawPuterWorkerUrl) return "";
+    try {
+        const url = new URL(rawPuterWorkerUrl);
+        if (url.protocol !== "http:" && url.protocol !== "https:") return "";
+        return url.origin;
+    } catch {
+        console.error(
+            "VITE_PUTER_WORKER_URL must be a full worker URL like https://your-worker.puter.work (got a non-URL value).",
+        );
+        return "";
+    }
+})();
 
 // Storage Paths
 export const STORAGE_PATHS = {
