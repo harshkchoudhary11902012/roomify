@@ -1,4 +1,4 @@
-import puter from "@heyputer/puter.js";
+import { puter } from "./puter.client";
 import {ROOMIFY_RENDER_PROMPT} from "./constants";
 
 export const fetchAsDataUrl = async (url: string): Promise<string> => {

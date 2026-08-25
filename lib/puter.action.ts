@@ -1,4 +1,4 @@
-import puter from "@heyputer/puter.js";
+import { puter } from "./puter.client";
 import {getOrCreateHostingConfig, uploadImageToHosting} from "./puter.hosting";
 import {isHostedUrl} from "./utils";
 import {PUTER_WORKER_URL} from "./constants";
